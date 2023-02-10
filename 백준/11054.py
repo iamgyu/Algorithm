@@ -4,8 +4,6 @@ dp2 = [0 for i in range(n)]
 result_dp = [0 for i in range(n)]
 a = list(map(int, input().split()))
 
-m = max(a)
-
 for i in range(n):
     for j in range(i):
         if a[i] > a[j] and dp1[i] < dp1[j]:
