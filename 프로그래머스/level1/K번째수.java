@@ -1,21 +1,19 @@
 import java.util.Arrays;
 
-class Solution {
+class K번째수 {
     public int[] solution(int[] array, int[][] commands) {
         int[] answer = new int[commands.length];
-        
-        for(int i = 0; i < answer.length; i++){
+        for (int i = 0; i < commands.length; i++) {
             int[] command = commands[i];
-            // 정답 구해서 answer[i]에 넣기
+
             int from = command[0] - 1;
             int to = command[1];
             int k = command[2] - 1;
-            
+
             int[] sub = Arrays.copyOfRange(array, from, to);
             Arrays.sort(sub);
             answer[i] = sub[k];
         }
-        
         return answer;
     }
 }
