@@ -1,41 +1,27 @@
+import java.util.Arrays;
 import java.util.stream.IntStream;
 
-class Solution {
-    private static final int[][] RULES = {
-        {1, 2, 3, 4, 5},
-        {2, 1, 2, 3, 2, 4, 2, 5},
-        {3, 3, 1, 1, 2, 2, 4, 4, 5, 5},
-    };
-    
-    private int getPicked(int person, int problem){
-        int[] rule = RULES[person];
-        int index = problem % rule.length;
-        return rule[index];
-    }
-    
+public class 모의고사 {
     public int[] solution(int[] answers) {
-        int[] corrects = new int[3];
-        int max = 0;
-        
-        for(int problem = 0; problem < answers.length; problem++){
-            int answer = answers[problem];
-            
-            // 각 수포자별로 정답 개수 세기
-            for(int person = 0; person < 3; person++){
-                int picked = getPicked(person, problem);
-                if(answer == picked){
-                    // max 업데이트하기
-                    if(++corrects[person] > max){
-                        max = corrects[person];
-                    }
-                }
-            }
+        int[] person1 = new int[]{1, 2, 3, 4, 5};
+        int[] person2 = new int[]{2, 1, 2, 3, 2, 4, 2, 5};
+        int[] person3 = new int[]{3, 3, 1, 1, 2, 2, 4, 4, 5, 5};
+        int[] correct = new int[3];
+
+
+        for (int i = 0; i < answers.length; i++) {
+            if(answers[i] == person1[i % person1.length])
+                correct[0]++;
+            if(answers[i] == person2[i % person2.length])
+                correct[1]++;
+            if(answers[i] == person3[i % person3.length])
+                correct[2]++;
         }
-        
-        final int maxCorrects = max;
+
+        int max = Arrays.stream(correct).max().orElse(0);
         return IntStream.range(0, 3)
-            .filter(i -> corrects[i] == maxCorrects)
-            .map(i -> i + 1)
-            .toArray();
+                .filter(i -> correct[i] == max)
+                .map(i -> i + 1)
+                .toArray();
     }
 }
