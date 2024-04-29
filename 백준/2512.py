@@ -1,4 +1,4 @@
-N = int(input()) # 지방의 수
+N, X = int(input()) # 지방의 수
 budget = list(map(int, input().split())) # N개의 지방 예산
 country_budget = int(input()) # 전체 국가예산
 start, end = 0, max(budget) # 시작 끝
