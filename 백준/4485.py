@@ -4,6 +4,7 @@ import heapq
 INF = int(1e9)
 dx = [-1, 1, 0, 0]
 dy = [0, 0, -1, 1]
+count = 1
 
 while True:
     N = int(input())
@@ -34,6 +35,5 @@ while True:
                     distance[nx][ny] = cost
                     heapq.heappush(queue, (cost, nx, ny))
 
-    count = 1
     print("Problem " + str(count) + ":", distance[N-1][N-1])
     count += 1
